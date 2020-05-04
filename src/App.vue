@@ -1,28 +1,47 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-container class="layout">
+      <b-row class="h-100">
+        <b-col cols="3" class="p-0">
+          <LSection class="p-3" user="miaachan" />
+        </b-col>
+        <b-col cols="9" class="p-0">
+          <Main class="p-3" />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LSection from "./components/LSection";
+import Main from "./components/Main";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    LSection,
+    Main
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  font-family: "Noto Sans", Helvetica Neue, Helvetica, Arial, Microsoft JhengHei,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100vh;
+  height: 100%;
+  background: #BDC0BA;
+  background-image: url("~@/assets/texture.png");
+}
+
+.layout {
+  min-height: 400px;
+  box-shadow: 2px 5px 8px 0 rgba(0, 0, 0, 0.2);
 }
 </style>
