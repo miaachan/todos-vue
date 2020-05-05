@@ -126,7 +126,7 @@ export default {
   min-height: 400px;
   max-height: 80vh;
   overflow: hidden;
-  box-shadow: 2px 5px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 8px 4px rgba(0, 0, 0, 0.2);
 }
 .Main {
   background-color: #fefefe;
