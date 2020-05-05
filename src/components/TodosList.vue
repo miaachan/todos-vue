@@ -1,13 +1,18 @@
 <template>
   <div class="mt-2">
-    <div class="d-flex justify-content-between">
-      <strong
-        >{{ headerMsg }} {{ filteredTodos.length }}/{{ todos.length }}</strong
+    <div class="d-flex justify-content-between align-items-center">
+      <strong>{{ headerMsg }}</strong>
+      <span class="light mr-auto ml-3 pt-1">
+        {{ filteredTodos.length }}/{{ todos.length }}</span
       >
       <strong>Hide</strong>
     </div>
 
-    <ul class="list-unstyled">
+    <transition-group
+      name="fade"
+      tag="ul"
+      class="todo-list special-list list-unstyled"
+    >
       <li
         v-for="todo in filteredTodos"
         :key="todo.id"
@@ -15,11 +20,15 @@
         @mouseleave="hoverTodo = null"
       >
         <div class="view p-1 m-2">
-          <b-checkbox v-model="todo.completed">
-            <label class="title" @dblclick="editTodo(todo)">{{
-              todo.title
-            }}</label>
-          </b-checkbox>
+          <b-checkbox v-model="todo.completed"> </b-checkbox>
+          <div class="todo-title-wrapper">
+            <div class="title" @dblclick="editTodo(todo)">{{ todo.title }}</div>
+            <div class="w-100"></div>
+            <div class="d-flex align-items-center" v-if="todo.tag != 'all'">
+              <label class="mr-4" :class="todo.tag"></label>
+              {{ todo.tag }}
+            </div>
+          </div>
 
           <transition name="slide-fade">
             <div class="wrapper hide-overflow" v-if="hoverTodo === todo.id">
@@ -31,7 +40,7 @@
           </transition>
         </div>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -99,12 +108,24 @@ export default {
 </script>
 
 <style scoped>
+.light {
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  font-weight: 100;
+  color: grey;
+}
+
 .view {
   display: flex;
-  position: relative;
-  align-items: center;
+  /* position: relative; */
+  /* align-items: center; */
   border: 1px solid #f0f0f0;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+.todo-title-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .wrapper {
@@ -161,6 +182,38 @@ export default {
   content: "⭐";
 }
 
+.todo-title-wrapper label {
+  padding: 6px;
+  margin: 0;
+  border: 2px solid #f0f0f0;
+  border-radius: 18px;
+  outline: none;
+  transition: padding 0.15s ease-out;
+  cursor: pointer;
+}
+
+input:checked ~ label {
+  padding: 8px;
+  border: 2px solid #f0f0f0;
+  border-radius: 18px;
+  outline: none;
+  /* box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2); */
+}
+
+label.all {
+  /* background-color: blue; */
+}
+
+label.red {
+  background-color: red;
+}
+label.orange {
+  background-color: orange;
+}
+label.yellow {
+  background-color: yellow;
+}
+
 /* Enter and leave animations can use different */
 
 /* durations and timing functions.              */
@@ -177,5 +230,23 @@ export default {
 .slide-fade-leave-to {
   transform: translateX(100px);
   opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  /* transition: color 0.4s; */
+  transition: all 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  /* color: #d9d9d9; */
+  transform: translateX(80vw);
+  /* opacity: 0; */
+}
+
+.fade-leave-to label.title {
+  /* color: #d9d9d9; */
+  text-decoration: line-through;
 }
 </style>
