@@ -33,7 +33,7 @@
                 :value="tag"
                 :class="tag"
               />
-              <label :for="tag"></label>
+              <label :for="tag" :class="tag"></label>
             </div>
           </div>
 
@@ -130,10 +130,14 @@ export default {
 }
 .Main {
   background-color: #fefefe;
-  /* max-height: 80vh; */
+  max-height: 80vh;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.Main::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .new-todo {
@@ -183,20 +187,6 @@ input:checked ~ label {
   /* box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2); */
 }
 
-input.all ~ label {
-  /* background-color: blue; */
-}
-
-input.red ~ label {
-  background-color: red;
-}
-input.orange ~ label {
-  background-color: orange;
-}
-input.yellow ~ label {
-  background-color: yellow;
-}
-
 .expand-enter-active {
   transition: all 0.5s ease;
 }
@@ -226,6 +216,20 @@ input.yellow ~ label {
 
 
 <style>
+label.all {
+  /* background-color: blue; */
+}
+
+label.red {
+  background-color: #ee5b65;
+}
+label.orange {
+  background-color: #f49c59;
+}
+label.yellow {
+  background-color: #fff59d;
+}
+
 .light {
   font-size: 0.9em;
   letter-spacing: 2px;

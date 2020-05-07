@@ -1,13 +1,14 @@
 <template>
   <div class="LSection">
     Hi, {{ user }}!
-    <div class="light d-inline-block">{{ date }}</div>
+    <div class="light">{{ date }}</div>
 
     <div class="wrapper">
       <div class="w-100 mt-2 mb-2"></div>
     </div>
 
-    Tag
+    <div class="light mb-2">Tag</div>
+    
     <ul class="tags list-unstyled">
       <li
         v-for="tag in this.todoTags"
@@ -15,10 +16,10 @@
         :class="tag"
         class="d-flex align-items-center"
       >
-        <label class="mr-2"></label>
+        <label class="mr-3" :class="tag"></label>
 
         {{ tag.charAt(0).toUpperCase() + tag.slice(1) }}
-        <span class="ml-auto">{{ todosLength(tag) }}</span>
+        <span class="ml-auto light">{{ todosLength(tag) }}</span>
       </li>
     </ul>
   </div>
@@ -64,6 +65,7 @@ export default {
   padding: 6px;
   border: 2px solid #f0f0f0;
   border-radius: 18px;
+  box-shadow: 1px 4px 8px 2px rgba(0, 0, 0, 0.2);
   outline: none;
   transition: padding 0.15s ease-out;
   cursor: pointer;
@@ -77,17 +79,5 @@ input:checked ~ label {
   /* box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2); */
 }
 
-li.all label {
-  background-color: blue;
-}
 
-li.red label {
-  background-color: red;
-}
-li.orange label {
-  background-color: orange;
-}
-li.yellow label {
-  background-color: yellow;
-}
 </style>

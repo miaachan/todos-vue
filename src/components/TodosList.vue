@@ -1,6 +1,6 @@
 <template>
   <div class="mt-2">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center p-2">
       <strong>{{ headerMsg }}</strong>
       <span class="light mr-auto ml-3 pt-1">
         {{ filteredTodos.length }}/{{ todos.length }}</span
@@ -117,8 +117,9 @@ export default {
 
 .view {
   display: flex;
-  /* position: relative; */
+  position: relative;
   /* align-items: center; */
+  /* min-height: 44px; */
   border: 1px solid #f0f0f0;
   overflow-x: hidden;
 }
@@ -128,26 +129,25 @@ export default {
   flex-wrap: wrap;
 }
 
+.title {
+  word-break: break-all;
+}
+
 .wrapper {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  right: 0px;
-  height: 100%;
+  margin-left: auto;
+  height: 24px;
   width: 100px;
-  overflow: hidden;
 }
 
 .btnwrapper {
   display: flex;
-  height: 44px;
+  height: 100%;
   width: 100%;
   cursor: pointer;
 }
 
 .remove,
-.star,
-.lock {
+.star {
   margin-left: auto;
   margin-right: 4px;
   border: 0;
@@ -160,8 +160,7 @@ export default {
 }
 
 .remove:hover,
-.star:hover,
-.lock:hover {
+.star:hover {
   opacity: 1;
   color: #080808;
 }
@@ -200,20 +199,6 @@ input:checked ~ label {
   /* box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2); */
 }
 
-label.all {
-  /* background-color: blue; */
-}
-
-label.red {
-  background-color: red;
-}
-label.orange {
-  background-color: orange;
-}
-label.yellow {
-  background-color: yellow;
-}
-
 /* Enter and leave animations can use different */
 
 /* durations and timing functions.              */
@@ -234,7 +219,6 @@ label.yellow {
 
 .fade-enter-active,
 .fade-leave-active {
-  /* transition: color 0.4s; */
   transition: all 0.5s;
 }
 

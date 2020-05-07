@@ -25,7 +25,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   height: 100%;
-  background: #BDC0BA;
+  background: #FCFAF2;
   background-image: url("~@/assets/texture.png");
 }
 </style>
