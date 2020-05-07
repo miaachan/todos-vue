@@ -20,13 +20,15 @@
         @mouseleave="hoverTodo = null"
       >
         <div class="view p-1 m-2">
-          <b-checkbox v-model="todo.completed"> </b-checkbox>
+          <b-checkbox v-model="todo.completed" @input="toggleTodo(todo)">
+          </b-checkbox>
           <div class="todo-title-wrapper">
             <div class="title" @dblclick="editTodo(todo)">{{ todo.title }}</div>
             <div class="w-100"></div>
             <div class="d-flex align-items-center" v-if="todo.tag != 'all'">
               <label class="mr-4" :class="todo.tag"></label>
-              {{ todo.tag }}
+              <span class="light" v-if="todo.time">{{ todo.time }}</span>
+              <!-- <span class="light" v-if="!todo.time">{{ todo.tag }}</span> -->
             </div>
           </div>
 
@@ -87,18 +89,13 @@ export default {
     }
   },
   methods: {
-    fetch: function() {
-      let todos = JSON.parse(
-        localStorage.getItem(this.todoStorage.STORAGE_KEY) || "[]"
-      );
-      todos.forEach(function(todo, index) {
-        todo.id = index;
-      });
-      this.todoStorage.uid = todos.length;
-      return todos;
-    },
-    save: function(todos) {
-      localStorage.setItem(this.todoStorage.STORAGE_KEY, JSON.stringify(todos));
+    // eslint-disable-next-line no-unused-vars
+    toggleTodo: function(todo) {
+      if (todo.completed) {
+        todo.time = new Date().toLocaleString("en-US").replace(",", "");
+      } else {
+        todo.time = null;
+      }
     },
     removeTodo: function(todo) {
       this.todos.splice(this.todos.indexOf(todo), 1);
@@ -111,7 +108,7 @@ export default {
 .light {
   font-size: 0.9em;
   letter-spacing: 2px;
-  font-weight: 100;
+  font-weight: 400;
   color: grey;
 }
 

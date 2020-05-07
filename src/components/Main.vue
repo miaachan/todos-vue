@@ -12,17 +12,20 @@
       <b-col cols="9" class="p-0">
         <div class="Main p-3">
           <h4>Todos List</h4>
-          <b-form inline @submit.prevent="submit">
+          <!-- <b-form inline @submit.prevent="submit"> -->
+          <div class="d-flex">
             <b-input
+            class="new-todo"
               v-model="newTodo"
               placeholder="Enter your todos"
               @keyup.enter="addTodo()"
             ></b-input>
+            <b-button variant="outline-primary" class="ml-2" @click="addTodo()">
+              Save
+            </b-button>
+          </div>
 
-            <b-button variant="outline-primary" class="ml-2" @click="addTodo()"
-              >Save</b-button
-            >
-          </b-form>
+          <!-- </b-form> -->
 
           <div class="newtodo-tags mt-2">
             <div class="d-inline-block mr-1" v-for="tag in todoTags" :key="tag">
@@ -69,7 +72,7 @@ export default {
         uid: 0
       },
       todos: [],
-      todoTags: ["all", "red", "orange", "yellow"],
+      todoTags: ["all", "red", "orange", "yellow", "green", "blue", "purple"],
       newTodo: "",
       newTodoTag: "all",
       hoverTodo: ""
@@ -141,20 +144,14 @@ export default {
 }
 
 .new-todo {
-  position: relative;
   flex: 1 1 100%;
   margin: 0;
-  width: 100%;
-  font-size: 24px;
-  font-family: inherit;
+  font-size: 20px;
   font-weight: inherit;
   line-height: 1.4em;
-  color: inherit;
-  box-sizing: border-box;
-  outline: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 16px 16px 16px 60px;
+  padding: 16px 16px 16px 6px;
   border: none;
   background: rgba(0, 0, 0, 0.003);
   box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
@@ -228,6 +225,25 @@ label.orange {
 }
 label.yellow {
   background-color: #fff59d;
+}
+
+label.green {
+  background-color: #72bc6a;
+}
+
+label.blue {
+  background-color: #3cafe7;
+}
+
+label.purple {
+  background-color: #be82c6;
+}
+
+.heavy {
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  font-weight: 100;
+  color: grey;
 }
 
 .light {
