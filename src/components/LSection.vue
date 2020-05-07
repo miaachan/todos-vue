@@ -8,17 +8,18 @@
     </div>
 
     <div class="light mb-2">Tag</div>
-    
+
     <ul class="tags list-unstyled">
       <li
         v-for="tag in this.todoTags"
         :key="tag.id"
         :class="tag"
-        class="d-flex align-items-center"
+        class="d-flex align-items-center m-1"
       >
         <label class="mr-3" :class="tag"></label>
 
-        {{ tag.charAt(0).toUpperCase() + tag.slice(1) }}
+        <span>{{ tag.charAt(0).toUpperCase() + tag.slice(1) }}</span>
+
         <span class="ml-auto light">{{ todosLength(tag) }}</span>
       </li>
     </ul>
@@ -65,10 +66,14 @@ export default {
   padding: 6px;
   border: 2px solid #f0f0f0;
   border-radius: 18px;
-  box-shadow: 1px 4px 8px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.2);
   outline: none;
   transition: padding 0.15s ease-out;
   cursor: pointer;
+}
+
+label ~ span {
+  font-size: 0.9rem;
 }
 
 input:checked ~ label {
@@ -78,6 +83,4 @@ input:checked ~ label {
   outline: none;
   /* box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2); */
 }
-
-
 </style>

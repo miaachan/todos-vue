@@ -5,13 +5,17 @@
       <span class="light mr-auto ml-3 pt-1">
         {{ filteredTodos.length }}/{{ todos.length }}</span
       >
-      <strong>Hide</strong>
+      <span @click="hide = !hide" style="cursor:pointer;">
+        <strong v-if="hide == false" @click="hideTodosList()">Hide</strong>
+        <strong v-else>Show</strong>
+      </span>
     </div>
 
     <transition-group
       name="fade"
       tag="ul"
-      class="todo-list special-list list-unstyled"
+      class="todo-list list-unstyled"
+      :class="{ 'hide-list': hide }"
     >
       <li
         v-for="todo in filteredTodos"
@@ -25,7 +29,10 @@
           <div class="todo-title-wrapper">
             <div class="title" @dblclick="editTodo(todo)">{{ todo.title }}</div>
             <div class="w-100"></div>
-            <div class="d-flex align-items-center" v-if="todo.tag != 'all'">
+            <div
+              class="d-flex align-items-center"
+              v-if="todo.tag != 'all' || todo.completed"
+            >
               <label class="mr-4" :class="todo.tag"></label>
               <span class="light" v-if="todo.time">{{ todo.time }}</span>
               <!-- <span class="light" v-if="!todo.time">{{ todo.tag }}</span> -->
@@ -77,7 +84,8 @@ export default {
   },
   data() {
     return {
-      hoverTodo: null
+      hoverTodo: null,
+      hide: false
     };
   },
   computed: {
@@ -99,7 +107,8 @@ export default {
     },
     removeTodo: function(todo) {
       this.todos.splice(this.todos.indexOf(todo), 1);
-    }
+    },
+    hideTodosList: function() {}
   }
 };
 </script>
@@ -110,6 +119,18 @@ export default {
   letter-spacing: 2px;
   font-weight: 400;
   color: grey;
+}
+
+.todo-list {
+  transition: all 0.3s ease;
+}
+
+.hide-list {
+  transform: translateY(400px);
+  position: absolute;
+  padding: 0 !important;
+  margin: 0 !important;
+  opacity: 0;
 }
 
 .view {

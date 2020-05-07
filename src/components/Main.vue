@@ -1,6 +1,6 @@
 <template>
   <b-container class="layout">
-    <b-row style="min-height:400px;">
+    <b-row>
       <b-col cols="3" class="p-0">
         <LSection
           class="p-3"
@@ -15,7 +15,7 @@
           <!-- <b-form inline @submit.prevent="submit"> -->
           <div class="d-flex">
             <b-input
-            class="new-todo"
+              class="new-todo"
               v-model="newTodo"
               placeholder="Enter your todos"
               @keyup.enter="addTodo()"
@@ -126,10 +126,13 @@ export default {
 
 <style scoped>
 .layout {
-  min-height: 400px;
   max-height: 80vh;
   overflow: hidden;
   box-shadow: 0 5px 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+.row {
+  min-height: 550px;
 }
 .Main {
   background-color: #fefefe;
