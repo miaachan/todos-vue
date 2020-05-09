@@ -12,20 +12,18 @@
       <b-col cols="9" class="p-0">
         <div class="Main p-3">
           <h4>Todos List</h4>
-          <!-- <b-form inline @submit.prevent="submit"> -->
           <div class="d-flex">
             <b-input
               class="new-todo"
               v-model="newTodo"
               placeholder="Enter your todos"
+              autocomplete="off"
               @keyup.enter="addTodo()"
             ></b-input>
             <b-button variant="outline-primary" class="ml-2" @click="addTodo()">
               Save
             </b-button>
           </div>
-
-          <!-- </b-form> -->
 
           <div class="newtodo-tags mt-2">
             <div class="d-inline-block mr-1" v-for="tag in todoTags" :key="tag">

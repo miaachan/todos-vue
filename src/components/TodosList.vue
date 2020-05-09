@@ -45,8 +45,18 @@
             <transition name="slide-fade">
               <div class="wrapper hide-overflow" v-if="hoverTodo === todo.id">
                 <div class="btnwrapper">
-                  <button class="star" @click="starTodo(todo)"></button>
-                  <button class="remove" @click="removeTodo(todo)"></button>
+                  <font-awesome-icon
+                    :icon="starIcon"
+                    @click="starTodo(todo)"
+                    @mouseover="starIcon = ['fas', 'star']"
+                    @mouseout="starIcon = ['far', 'star']"
+                  />
+                  <font-awesome-icon
+                    :icon="trashIcon"
+                    @click="removeTodo(todo)"
+                    @mouseover="trashIcon = ['fas', 'trash-alt']"
+                    @mouseout="trashIcon = ['far', 'trash-alt']"
+                  />
                 </div>
               </div>
             </transition>
@@ -58,7 +68,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
 let filters = {
   all: function(todos) {
     return todos;
@@ -89,7 +98,9 @@ export default {
   data() {
     return {
       hoverTodo: null,
-      hide: false
+      hide: false,
+      starIcon: ["far", "star"],
+      trashIcon: ["far", "trash-alt"]
     };
   },
   computed: {
@@ -101,7 +112,6 @@ export default {
     }
   },
   methods: {
-    // eslint-disable-next-line no-unused-vars
     toggleTodo: function(todo) {
       if (todo.completed) {
         todo.time = new Date().toLocaleString("en-US").replace(",", "");
@@ -118,6 +128,9 @@ export default {
 </script>
 
 <style scoped>
+.test {
+  color: black;
+}
 .light {
   font-size: 0.9em;
   letter-spacing: 2px;
@@ -127,8 +140,7 @@ export default {
 
 .slide-hide-enter-active {
   /* transition: all 0.3s ease; */
-    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
-
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-hide-leave-active {
@@ -162,7 +174,7 @@ export default {
 .wrapper {
   margin-left: auto;
   height: 24px;
-  width: 100px;
+  width: 55px;
 }
 
 .btnwrapper {
@@ -170,25 +182,9 @@ export default {
   height: 100%;
   width: 100%;
   cursor: pointer;
-}
-
-.remove,
-.star {
-  margin-left: auto;
-  margin-right: 4px;
-  border: 0;
-  background-color: inherit;
-  font-size: large;
-  color: white;
-  opacity: 0.3;
-  cursor: pointer;
-  outline: none;
-}
-
-.remove:hover,
-.star:hover {
-  opacity: 1;
-  color: #080808;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 4px;
 }
 
 .pressed {
@@ -197,14 +193,6 @@ export default {
 
 .pressed:hover {
   opacity: 0.3;
-}
-
-.remove:after {
-  content: "❌";
-}
-
-.star:after {
-  content: "⭐";
 }
 
 .todo-title-wrapper label {

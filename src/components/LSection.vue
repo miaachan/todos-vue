@@ -1,7 +1,11 @@
 <template>
   <div class="LSection">
-    Hi, {{ user }}!
-    <div class="light">{{ date }}</div>
+    <div class="top">
+      Hi, {{ user }}!
+      <div class="light">
+        {{ date }} <font-awesome-icon :icon="['fas', 'cog']" spin />
+      </div>
+    </div>
 
     <div class="wrapper">
       <div class="w-100 mt-2 mb-2"></div>
@@ -34,9 +38,6 @@ export default {
     todos: Array,
     todoTags: Array
   },
-  mounted() {
-    // console.log();
-  },
   computed: {
     date: () => new Date().toDateString()
   },
@@ -53,6 +54,12 @@ export default {
   background-color: #f5f3f6;
   height: 100%;
   border-right: 2px solid #f3f3f3;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .w-100 {
