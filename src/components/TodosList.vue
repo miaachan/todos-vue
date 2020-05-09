@@ -11,45 +11,49 @@
       </span>
     </div>
 
-    <transition-group
-      name="fade"
-      tag="ul"
-      class="todo-list list-unstyled"
-      :class="{ 'hide-list': hide }"
-    >
-      <li
-        v-for="todo in filteredTodos"
-        :key="todo.id"
-        @mouseenter="hoverTodo = todo.id"
-        @mouseleave="hoverTodo = null"
+    <transition name="slide-hide">
+      <transition-group
+        name="fade"
+        tag="ul"
+        class="todo-list list-unstyled"
+        v-if="!hide"
       >
-        <div class="view p-1 m-2">
-          <b-checkbox v-model="todo.completed" @input="toggleTodo(todo)">
-          </b-checkbox>
-          <div class="todo-title-wrapper">
-            <div class="title" @dblclick="editTodo(todo)">{{ todo.title }}</div>
-            <div class="w-100"></div>
-            <div
-              class="d-flex align-items-center"
-              v-if="todo.tag != 'all' || todo.completed"
-            >
-              <label class="mr-4" :class="todo.tag"></label>
-              <span class="light" v-if="todo.time">{{ todo.time }}</span>
-              <!-- <span class="light" v-if="!todo.time">{{ todo.tag }}</span> -->
-            </div>
-          </div>
-
-          <transition name="slide-fade">
-            <div class="wrapper hide-overflow" v-if="hoverTodo === todo.id">
-              <div class="btnwrapper">
-                <button class="star" @click="starTodo(todo)"></button>
-                <button class="remove" @click="removeTodo(todo)"></button>
+        <li
+          v-for="todo in filteredTodos"
+          :key="todo.id"
+          @mouseenter="hoverTodo = todo.id"
+          @mouseleave="hoverTodo = null"
+        >
+          <div class="view p-1 m-2">
+            <b-checkbox v-model="todo.completed" @input="toggleTodo(todo)">
+            </b-checkbox>
+            <div class="todo-title-wrapper">
+              <div class="title" @dblclick="editTodo(todo)">
+                {{ todo.title }}
+              </div>
+              <div class="w-100"></div>
+              <div
+                class="d-flex align-items-center"
+                v-if="todo.tag != 'all' || todo.completed"
+              >
+                <label class="mr-4" :class="todo.tag"></label>
+                <span class="light" v-if="todo.time">{{ todo.time }}</span>
+                <!-- <span class="light" v-if="!todo.time">{{ todo.tag }}</span> -->
               </div>
             </div>
-          </transition>
-        </div>
-      </li>
-    </transition-group>
+
+            <transition name="slide-fade">
+              <div class="wrapper hide-overflow" v-if="hoverTodo === todo.id">
+                <div class="btnwrapper">
+                  <button class="star" @click="starTodo(todo)"></button>
+                  <button class="remove" @click="removeTodo(todo)"></button>
+                </div>
+              </div>
+            </transition>
+          </div>
+        </li>
+      </transition-group>
+    </transition>
   </div>
 </template>
 
@@ -121,15 +125,19 @@ export default {
   color: grey;
 }
 
-.todo-list {
-  transition: all 0.3s ease;
+.slide-hide-enter-active {
+  /* transition: all 0.3s ease; */
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+
 }
 
-.hide-list {
+.slide-hide-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-hide-enter,
+.slide-hide-leave-to {
   transform: translateY(400px);
-  position: absolute;
-  padding: 0 !important;
-  margin: 0 !important;
   opacity: 0;
 }
 
