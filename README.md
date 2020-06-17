@@ -10,6 +10,10 @@ UI is now refactoring with reference to my classmate's one, and the backend is a
 In other words, it is now a pure static web app.
 
 
+v0.1?
+![todo-list.png](https://share.miaachan.me/view/IMG/2020/06/18/Zw35nqQD/todo-list.png)
+
+
 ## Project setup
 ```
 npm install
