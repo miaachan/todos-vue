@@ -1,11 +1,7 @@
 # todos-vue
 todos-vue is a simple web application that stores todos items using localStorage.
 
-
-It was initially a course work project in my recent semester that built with Vue and Java Springboot. The original work is a todos system with backend real-time cloud synchronization and user authentication.
-
-
-UI is now refactoring with reference to my classmate's one, and the backend is also removed. In other words, it is now a pure static web app.
+![todo-list.png](https://drive.google.com/uc?id=105FLVIOBirIuZ07MIzIgvdm4jal0SetQ)
 
 
 ## Project setup
